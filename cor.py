@@ -5,15 +5,44 @@ import math
 import matplotlib.pyplot as raton
 
 
-ciudades = ["pamplona", "barcelona", "a", "b"]
-coordenadas = ([0, 50], [25, -98], [60, 25], [40, 30])
+def ciudadesdef(ciudades, viajes):
+    separador_ciudades = " > "
+    buffer_ciudades = []
+
+    for viaje in viajes:
+        buffer_viaje = ""
+        for indice_ciudad in viaje:
+            buffer_viaje += separador_ciudades + ciudades[indice_ciudad]
+        buffer_ciudades.append(buffer_viaje)
+
+    return buffer_ciudades
 
 
-separador_ciudades = " > "
-separador_viajes = '\n'
+def restastupla(tupla1, tupla2):
+    return (tupla1[0] - tupla2[0])**2 + (tupla1[1] - tupla2[1])**2
+
+
+ciudades = [
+    "Madrid",
+    "Rio",
+    "New York"
+]
+
+coordenadas = [
+    [0, 2, 1],
+    [0, 1, 2],
+    [1, 2, 0],
+    [1, 0, 2],
+    [2, 0, 1],
+    [2, 1, 0]
+]
+
+
+for linea in ciudadesdef(ciudades, coordenadas):
+    print(linea, end=" << ")
+
+
 indices = [0, 1]
-
-mis_viajes = [[0, 2, 1], [0, 1, 2], [1, 2, 0], [1, 0, 2], [2, 0, 1], [2, 1, 0]]
 x = []
 y = []
 
@@ -25,34 +54,14 @@ fig, ax = raton.subplots()
 ax.plot([1, 2, 3, 4], [1, 2, 0, 0.5])
 raton.show()
 
-raton.scatter(coordenadas[0][0], coordenadas[0][1], color='r', label = ciudades[0])
-raton.scatter(coordenadas[1][0], coordenadas[1][1], color='b', label = ciudades[1])
-raton.scatter(coordenadas[2][0], coordenadas[2][1], color='g', label = ciudades[2])
+raton.scatter(coordenadas[0][0], coordenadas[0]
+              [1], color='r', label=ciudades[0])
+raton.scatter(coordenadas[1][0], coordenadas[1]
+              [1], color='b', label=ciudades[1])
+raton.scatter(coordenadas[2][0], coordenadas[2]
+              [1], color='g', label=ciudades[2])
 raton.plot(x, y, color='b')
 
-
-def restastupla(tupla1, tupla2):
-    return (tupla1[0] - tupla2[0])**2 + (tupla1[1] - tupla2[1])**2
-
-
-def linea(viaje):  # [0,1]
-    buffer = ''
-    for i_ciudad in viaje:
-        buffer = buffer + separador_ciudades + ciudades[i_ciudad]
-
-    return buffer
-
-
-def la_lista_para_viajar(mis_viajes):
-    buffer = ''
-
-    for viaje in mis_viajes:
-        buffer = buffer + linea(viaje) + separador_viajes
-    return buffer
-
-b = la_lista_para_viajar(mis_viajes)
-
-print(b)
 
 operacion_m_ny = restastupla(coordenadas[0], coordenadas[1])
 operacion_m_r = restastupla(coordenadas[0], coordenadas[2])
@@ -73,7 +82,6 @@ viaje_m_r_ny = math.sqrt(operacion_m_r) + \
     math.sqrt(operacion_r_ny) + math.sqrt(operacion_ny_m)
 
 print(f"Total viajes dando la vuelta : {viaje_m_r_ny}")
-
 
 
 raton.legend()
