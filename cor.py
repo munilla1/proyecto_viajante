@@ -3,6 +3,7 @@ from math import sqrt
 import numpy as raton
 import math
 import matplotlib.pyplot as raton
+import itertools
 
 
 def ciudadesdef(ciudades, viajes):
@@ -22,6 +23,15 @@ def restastupla(tupla1, tupla2):
     return (tupla1[0] - tupla2[0])**2 + (tupla1[1] - tupla2[1])**2
 
 
+# def permutations(start, end=[]):
+#     if len(start) == 0:
+#         print(end)
+#     else:
+#         for i in range(len(start)):
+#             permutations(start[:i] + start[i+1:], end + start[i:i+1])
+#     return permutations
+
+
 ciudades = [
     "Madrid",
     "Rio",
@@ -36,18 +46,21 @@ coordenadas = [
     [2, 0, 1],
     [2, 1, 0]
 ]
+# for coordenada in permutations(ciudades):
+#     print(ciudades)
+
 
 
 for linea in ciudadesdef(ciudades, coordenadas):
-    print(linea, end = " << ")
+    print(linea, end=" La distancia es 88 kms ")
 
 
 indices = [0, 1]
-# x = []
-# y = []
-# for coordenada in coordenadas:
-#     x.append(coordenada[0])
-#     y.append(coordenada[1])
+x = []
+y = []
+for coordenada in coordenadas:
+    x.append(coordenada[0])
+    y.append(coordenada[1])
 
 
 # raton.scatter(coordenadas[0][0], coordenadas[0]
@@ -59,12 +72,12 @@ indices = [0, 1]
 # raton.plot(x, y, color='b')
 
 
-# operacion_m_ny = restastupla(coordenadas[0], coordenadas[1])
-# operacion_m_r = restastupla(coordenadas[0], coordenadas[2])
-# operacion_r_ny = restastupla(coordenadas[2], coordenadas[1])
-# operacion_r_m = restastupla(coordenadas[2], coordenadas[0])
-# operacion_ny_m = restastupla(coordenadas[1], coordenadas[0])
-# operacion_ny_r = restastupla(coordenadas[1], coordenadas[2])
+operacion_m_ny = restastupla(coordenadas[0], coordenadas[1])
+operacion_m_r = restastupla(coordenadas[0], coordenadas[2])
+operacion_r_ny = restastupla(coordenadas[2], coordenadas[1])
+operacion_r_m = restastupla(coordenadas[2], coordenadas[0])
+operacion_ny_m = restastupla(coordenadas[1], coordenadas[0])
+operacion_ny_r = restastupla(coordenadas[1], coordenadas[2])
 
 
 # print(f"""Distancia de : Madrid --> New York --> Rio : {math.sqrt(operacion_m_ny) + math.sqrt(operacion_ny_r)}
@@ -74,8 +87,8 @@ indices = [0, 1]
 # Distancia de : New York --> Rio --> Madrid : {math.sqrt(operacion_ny_r) + math.sqrt(operacion_r_m)}
 # Distancia de : New York --> Madrid --> Rio : {math.sqrt(operacion_ny_m) + math.sqrt(operacion_m_r)}
 # """)
-# viaje_m_r_ny = math.sqrt(operacion_m_r) + \
-#     math.sqrt(operacion_r_ny) + math.sqrt(operacion_ny_m)
+viaje_m_r_ny = math.sqrt(operacion_m_r) + \
+    math.sqrt(operacion_r_ny) + math.sqrt(operacion_ny_m)
 
 # print(f"Total viajes dando la vuelta : {viaje_m_r_ny}")
 
